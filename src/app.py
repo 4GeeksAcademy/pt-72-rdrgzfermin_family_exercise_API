@@ -65,6 +65,7 @@ def handle_hello():
 @app.route('/member/<int:member_id>', methods=['GET'])
 def get_each_member(member_id):
     member = jackson_family.get_member(member_id)
+    # could add a conditional to check if member exist and if not return an error
     return jsonify(member), 200
 
 @app.route('/member', methods=['POST'])
@@ -78,7 +79,7 @@ def create_member():
 def delete_member(member_id):
     jackson_family.delete_member(member_id)
 
-    response = {"done": True}
+    response = {"done": True}   
     return jsonify(response), 200
 
 # this only runs if `$ python src/app.py` is executed
